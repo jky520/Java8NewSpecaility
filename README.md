@@ -33,11 +33,12 @@
     
 # 五、引用方法
     Java8允许你使用 :: 关键字来传递方法或者构造函数引用，但是满足某些条件！
-    1、类(静态)方法的引用
-    2、对象方法的引用
-    3、构造方法的引用
+    1、类(静态)方法的引用       类名::staticMethod          (args) -> 类名.staticMethod(args)
+    2、实例方法的引用           inst::instMethod            (args) -> inst.instMethod(args)
+    3、对象方法的引用           类名::instMethod            (inst, args) -> 类名.instMethod(args)
+    4、构造方法的引用           类名::new                   (args) -> new 类名(args)    
     
-    注：示例代码在test4包下
+    注：示例代码在test4和lambda包下
     
 # 六、Lambda作用域
     在Lambda表达式中访问外层作用域和Java8之前的匿名内部类中的方式很相似。你可以直接访问标记了final
@@ -77,4 +78,43 @@
 # 十、Supplier函数式接口
     Supplier接口返回一个任意范型的值，和Function接口不同的是该接口没有任何参数。
     注：示例代码在test9包下
+    
+# Lambda表达式语法
+    args -> expr
+    或者
+    (Object... args) -> {函数式接口抽象方法实现逻辑}
+    ()里面参数的个数，根据函数式接口里面抽象方法的参数个数来决定。
+    当只有一个参数的时候，()可以省略
+    当expr逻辑非常简单的时候，{}和return可以省略
+    
+    Lambda表达式示例
+    () -> {}                                   // 无参、无返回值
+    () -> { System.out.println(1); }           // 无参、无返回值
+    () -> System.out.println(1);               // 无参、无返回值(上面的简写)
+    () -> { return 100; }                      // 无参、有返回值
+    () -> 100;                                 // 无参、有返回值(上面的简写)
+    () -> null;                                // 无参、有返回值(返回值为null)
+    (int x) -> { return x + 1; }               // 单个参数，有返回值
+    (int x) -> x + 1;                          // 单个参数，有返回值(上面的简写)
+    (x) -> x + 1;                              // 单个参数，有返回值(不指定参数类型，多个参数必须用括号)
+    x -> x + 1;                                // 单个参数，有返回值(不指定参数类型)
+    
+    注意事项
+    (x, int y) -> x + y;                       // 参数类型可以自动推断，但是参数类型要么全写，要么全省略
+    (x, final y) -> x + y;                     // 参数不能用final修饰
+    Object obj = () -> "hello";                // 不能把Lambda表达式赋给一个非函数式接口，Object不是一个函数式接口,如果一定要这么用，
+    只能通过强转Lambda,如：Object obj = (Supplier<?>)() -> "hello"; 
+    * 不需要也不允许使用throws语句来声明它可能会抛出的异常
+    
+    Lambda表达式的使用有两点：
+    一、看参数
+    二、看返回值
+    
+    Lambda表达式的官方API地址：http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.27
+    
+# Stream API
+    Stream是一组用来处理数组、集合的API
+    
+    
+    
     
