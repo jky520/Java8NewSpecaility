@@ -145,6 +145,7 @@ public class StreamApp {
             System.out.println(Thread.currentThread().getName());
         }).max(Integer::compare);
         System.out.println(max);
+
         // -Djava.util.concurent.ForkJoinPool.common.parallelism=5
         // 可以设置并行线程数量
         System.setProperty("java.util.concurent.ForkJoinPool.common.parallelism","5");
