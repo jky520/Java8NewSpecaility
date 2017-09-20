@@ -17,7 +17,7 @@ public class DateDemo {
 
         // 不可变的对象：一旦实例化就不可变了
         BigDecimal b = new BigDecimal("1000");
-        StringBuffer sb = new StringBuffer("aa");
+        StringBuffer sb = new StringBuffer("aa"); //
 
         // Java1.8以后新增的日期对象
         LocalDate day = LocalDate.now(); // 只有年月日没有时分秒
