@@ -183,6 +183,20 @@ public class LambdaTest {
         System.out.println(rYears);
     }
 
+    /**
+     * 求1!+2!+...+30!的阶层之和并输出，要求使用函数方式实现
+     *
+     * reduce实现累加求和以例子
+     */
+    @Test
+    public void test11() {
+        Long rs = Stream.iterate(1, x -> x+1).limit(30).map(LambdaTest::jeceng).reduce(0l, (sum, index) -> {
+            sum += index;
+            return sum;
+        });
+        System.out.println(rs);
+    }
+
     private List<Book> books() {
         List<Book> books = new ArrayList<>();
         books.add(Book.builder().id(1).name("java").price(50d).type("编程语言").pusblisDate(LocalDate.parse("2014-05-06")).build());
@@ -202,5 +216,17 @@ public class LambdaTest {
         books.add(Book.builder().id(15).name("算法导论").price(58d).type("其他").pusblisDate(LocalDate.parse("2011-08-08")).build());
         books.add(Book.builder().id(16).name("oracle").price(150d).type("数据库").pusblisDate(LocalDate.parse("2017-04-10")).build());
         return  books;
+    }
+
+    /**
+     * 计算某个数的阶层
+     * @param n 表示具体的某个数
+     * @return 阶层结果
+     */
+    private static long jeceng(int n) {
+        return Stream.iterate(1, x -> x+1).limit(n).reduce(1, (sum, index) -> {
+            sum *= index;
+            return sum;
+        });
     }
 }
