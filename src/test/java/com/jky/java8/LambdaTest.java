@@ -187,10 +187,11 @@ public class LambdaTest {
      * 求1!+2!+...+30!的阶层之和并输出，要求使用函数方式实现
      *
      * reduce实现累加求和例子
+     * peek可以打印每一次数据的变化
      */
     @Test
     public void test11() {
-        Long rs = Stream.iterate(1, x -> x+1).limit(30).map(LambdaTest::jeceng).reduce(0l, (sum, index) -> sum += index);
+        Long rs = Stream.iterate(1, x -> x+1).limit(30).map(LambdaTest::jieceng).peek(System.out::println).reduce(0l, (sum, index) -> sum += index);
         System.out.println(rs);
     }
 
@@ -220,7 +221,7 @@ public class LambdaTest {
      * @param n 表示具体的某个数
      * @return 阶层结果
      */
-    private static long jeceng(int n) {
+    private static long jieceng(int n) {
         return Stream.iterate(1, x -> x+1).limit(n).reduce(1, (sum, index) -> sum *= index);
     }
 }
