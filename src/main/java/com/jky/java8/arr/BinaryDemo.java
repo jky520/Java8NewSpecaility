@@ -15,8 +15,8 @@ public class BinaryDemo {
         int score[] = {65,98,78,92,88,100,85,95,82};
         Scanner input = new Scanner(System.in);
         sort(score); // 数组的传递与引用
-        // 数组转换成List的方法
-        Arrays.stream(score).boxed().collect(Collectors.toList()).stream().forEach(x -> System.out.print(x + "\t"));
+        // 数组转换成List的方法 Arrays.stream(score).boxed().collect(Collectors.toList())
+        Arrays.stream(score).boxed().forEach(x -> System.out.print(x + "\t"));
         System.out.println();
 
         System.out.print("请输入目标数据：");
